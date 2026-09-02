@@ -1,0 +1,127 @@
+// =============================================================
+// Taskora — jetons de design
+// Surcharges Bootstrap appliquees AVANT l'import du framework.
+// =============================================================
+
+// --- Palette -------------------------------------------------
+$tk-ink:            #0f172a; // bleu-noir, texte principal
+$tk-ink-soft:       #475569;
+$tk-muted:          #64748b;
+$tk-faint:          #94a3b8;
+
+$tk-canvas:         #f5f6f8; // fond applicatif
+$tk-surface:        #ffffff; // cartes et panneaux
+$tk-surface-alt:    #f8fafc;
+$tk-line:           #e6e8ec; // bordures discretes
+$tk-line-strong:    #d5d9e0;
+
+$tk-primary:        #2563eb;
+$tk-primary-dark:   #1d4ed8;
+$tk-primary-soft:   #eff4ff;
+
+$tk-success:        #059669;
+$tk-success-soft:   #ecfdf5;
+$tk-warning:        #d97706;
+$tk-warning-soft:   #fffbeb;
+$tk-danger:         #dc2626;
+$tk-danger-soft:    #fef2f2;
+$tk-info:           #0891b2;
+$tk-info-soft:      #ecfeff;
+$tk-neutral-soft:   #f1f5f9;
+
+// --- Bootstrap ----------------------------------------------
+$primary:   $tk-primary;
+$secondary: $tk-muted;
+$success:   $tk-success;
+$danger:    $tk-danger;
+$warning:   $tk-warning;
+$info:      $tk-info;
+$light:     $tk-surface-alt;
+$dark:      $tk-ink;
+
+$body-bg:    $tk-canvas;
+$body-color: $tk-ink;
+
+$font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+$font-size-base:   0.9375rem; // 15px : densite SaaS
+$line-height-base: 1.55;
+
+$headings-font-weight: 650;
+$headings-color:       $tk-ink;
+
+$border-color:  $tk-line;
+$border-radius:    .625rem;
+$border-radius-sm: .4375rem;
+$border-radius-lg: .875rem;
+$border-radius-xl: 1.125rem;
+
+$box-shadow-sm: 0 1px 2px rgba(15, 23, 42, .05);
+$box-shadow:    0 1px 3px rgba(15, 23, 42, .07), 0 1px 2px rgba(15, 23, 42, .04);
+$box-shadow-lg: 0 8px 24px rgba(15, 23, 42, .10);
+
+$card-border-color:  $tk-line;
+$card-border-radius: $border-radius-lg;
+$card-bg:            $tk-surface;
+$card-cap-bg:        $tk-surface;
+$card-spacer-y:      1.15rem;
+$card-spacer-x:      1.25rem;
+
+$input-border-color:       $tk-line-strong;
+$input-focus-border-color: $tk-primary;
+$input-focus-box-shadow:   0 0 0 3px rgba(37, 99, 235, .12);
+$input-btn-focus-box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+$input-padding-y:  .5rem;
+$input-padding-x:  .75rem;
+$form-label-font-weight: 550;
+$form-label-color: $tk-ink-soft;
+$form-label-font-size: .8125rem;
+
+$btn-font-weight:  550;
+$btn-padding-y:    .5rem;
+$btn-padding-x:    .95rem;
+$btn-focus-width:  3px;
+
+$table-border-color: $tk-line;
+$table-cell-padding-y: .8rem;
+$table-cell-padding-x: .9rem;
+$table-hover-bg: $tk-surface-alt;
+
+$dropdown-border-color: $tk-line;
+$dropdown-border-radius: $border-radius;
+$dropdown-box-shadow: $box-shadow-lg;
+$dropdown-link-active-bg: $tk-primary-soft;
+$dropdown-link-active-color: $tk-primary-dark;
+$dropdown-item-padding-y: .5rem;
+
+$modal-content-border-color: $tk-line;
+$modal-content-border-radius: $border-radius-lg;
+$modal-header-padding: 1.15rem 1.35rem;
+$modal-inner-padding: 1.35rem;
+
+$badge-font-weight: 600;
+$badge-padding-y: .3em;
+$badge-padding-x: .6em;
+
+$nav-link-color: $tk-ink-soft;
+$nav-link-hover-color: $tk-primary;
+
+$pagination-border-color: $tk-line;
+$pagination-active-bg: $tk-primary;
+$pagination-border-radius: $border-radius-sm;
+
+$offcanvas-horizontal-width: 268px;
+$offcanvas-border-color: $tk-line;
+
+$tooltip-bg: $tk-ink;
+$tooltip-opacity: 1;
+$tooltip-font-size: .75rem;
+
+$progress-height: .375rem;
+$progress-bg: $tk-neutral-soft;
+$progress-border-radius: 99px;
+
+// --- Metriques de mise en page -------------------------------
+$tk-sidebar-width:          264px;
+$tk-sidebar-width-collapsed: 74px;
+$tk-topbar-height:          62px;

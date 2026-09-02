@@ -1,0 +1,90 @@
+// =============================================================
+// Taskora — feuille de style principale
+// Ordre imposé : variables → Bootstrap → composants Taskora
+// =============================================================
+
+@import "variables";
+
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+@import "layout";
+@import "components";
+@import "kanban";
+@import "forms";
+
+// --- Ajustements globaux --------------------------------------
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a { text-decoration: none; }
+
+:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, .25);
+    outline-offset: 1px;
+}
+
+.btn { font-size: .875rem; }
+
+.btn-light {
+    background: $tk-surface;
+    border-color: $tk-line-strong;
+    color: $tk-ink-soft;
+
+    &:hover {
+        background: $tk-surface-alt;
+        border-color: $tk-line-strong;
+        color: $tk-ink;
+    }
+}
+
+.btn-sm { font-size: .8125rem; padding: .35rem .7rem; }
+
+.dropdown-menu {
+    font-size: .8125rem;
+    padding: .3rem;
+}
+
+.dropdown-item {
+    border-radius: $border-radius-sm;
+
+    i { width: 18px; }
+}
+
+.dropdown-header {
+    font-size: .6875rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-weight: 650;
+    color: $tk-faint;
+}
+
+.tk-text-muted { color: $tk-muted !important; }
+.tk-text-faint { color: $tk-faint !important; }
+.tk-fs-xs { font-size: .75rem; }
+.tk-fs-sm { font-size: .8125rem; }
+.tk-tabular { font-variant-numeric: tabular-nums; }
+
+.tk-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// Barres de defilement discretes
+* {
+    scrollbar-color: $tk-line-strong transparent;
+}
+
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: $tk-line-strong;
+    border-radius: 99px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background: $tk-faint; background-clip: content-box; }

@@ -1,0 +1,121 @@
+// =============================================================
+// Vue Kanban : six colonnes, scroll horizontal, drag & drop
+// =============================================================
+
+.tk-board {
+    display: flex;
+    gap: .875rem;
+    align-items: flex-start;
+    overflow-x: auto;
+    padding-bottom: .75rem;
+    scrollbar-width: thin;
+
+    // Compense le padding de .tk-page pour un defilement pleine largeur.
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    @include media-breakpoint-down(sm) {
+        margin: 0 -1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+.tk-board__column {
+    flex: 0 0 292px;
+    width: 292px;
+    background: #eff1f5;
+    border: 1px solid $tk-line;
+    border-radius: $border-radius-lg;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - #{$tk-topbar-height} - 190px);
+    min-height: 220px;
+}
+
+.tk-board__head {
+    padding: .7rem .8rem .6rem;
+    border-bottom: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    flex-shrink: 0;
+}
+
+.tk-board__title {
+    font-size: .8125rem;
+    font-weight: 650;
+    color: $tk-ink;
+    letter-spacing: -.01em;
+}
+
+.tk-board__count {
+    margin-left: auto;
+    font-size: .6875rem;
+    font-weight: 650;
+    color: $tk-muted;
+    background: rgba(255, 255, 255, .85);
+    border: 1px solid $tk-line;
+    border-radius: 99px;
+    padding: .08rem .45rem;
+    min-width: 22px;
+    text-align: center;
+}
+
+// Accent inferieur identifiant le statut de la colonne.
+.tk-board__column[data-status="pending"]     .tk-board__head { border-bottom-color: #f59e0b; }
+.tk-board__column[data-status="todo"]        .tk-board__head { border-bottom-color: #6366f1; }
+.tk-board__column[data-status="in_progress"] .tk-board__head { border-bottom-color: #06b6d4; }
+.tk-board__column[data-status="completed"]   .tk-board__head { border-bottom-color: #10b981; }
+.tk-board__column[data-status="cancelled"]   .tk-board__head { border-bottom-color: #f43f5e; }
+.tk-board__column[data-status="archived"]    .tk-board__head { border-bottom-color: $tk-faint; }
+
+.tk-board__list {
+    padding: .625rem;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    scrollbar-width: thin;
+    min-height: 90px;
+
+    &.tk-drop-active {
+        background: rgba(37, 99, 235, .05);
+        outline: 2px dashed rgba(37, 99, 235, .3);
+        outline-offset: -4px;
+        border-radius: $border-radius;
+    }
+}
+
+.tk-board__empty {
+    font-size: .75rem;
+    color: $tk-faint;
+    text-align: center;
+    padding: 1.1rem .5rem;
+    border: 1px dashed $tk-line-strong;
+    border-radius: $border-radius-sm;
+}
+
+/* --- Etats du drag & drop ------------------------------------- */
+
+.tk-drag-ghost {
+    opacity: .35;
+    background: $tk-primary-soft !important;
+}
+
+.tk-drag-chosen {
+    cursor: grabbing;
+}
+
+.tk-drag-active {
+    box-shadow: $box-shadow-lg;
+    transform: rotate(1.2deg);
+}
+
+.tk-board .tk-task-card {
+    cursor: pointer;
+
+    &.is-draggable { cursor: grab; }
+}

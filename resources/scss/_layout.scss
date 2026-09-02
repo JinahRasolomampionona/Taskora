@@ -1,0 +1,330 @@
+// =============================================================
+// Coquille applicative : sidebar fixe + barre superieure + contenu
+// =============================================================
+
+.tk-app {
+    min-height: 100vh;
+}
+
+/* ---------------------------------------------------------------
+ | Sidebar
+ | --------------------------------------------------------------- */
+
+.tk-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: $tk-sidebar-width;
+    background: $tk-surface;
+    border-right: 1px solid $tk-line;
+    display: flex;
+    flex-direction: column;
+    z-index: 1040;
+    transition: width .18s ease;
+}
+
+.tk-sidebar__brand {
+    height: $tk-topbar-height;
+    display: flex;
+    align-items: center;
+    gap: .625rem;
+    padding: 0 1.125rem;
+    border-bottom: 1px solid $tk-line;
+    flex-shrink: 0;
+    text-decoration: none;
+    color: $tk-ink;
+
+    &:hover { color: $tk-ink; }
+}
+
+.tk-sidebar__mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, $tk-primary, #4f46e5);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: .95rem;
+    flex-shrink: 0;
+}
+
+.tk-sidebar__name {
+    font-weight: 680;
+    font-size: 1.0625rem;
+    letter-spacing: -.015em;
+    white-space: nowrap;
+}
+
+.tk-sidebar__nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: .875rem .75rem 1.25rem;
+    scrollbar-width: thin;
+}
+
+.tk-sidebar__section {
+    font-size: .6875rem;
+    font-weight: 650;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: $tk-faint;
+    padding: 1rem .625rem .4rem;
+    white-space: nowrap;
+}
+
+.tk-nav-link {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    padding: .5rem .625rem;
+    margin-bottom: .125rem;
+    border-radius: $border-radius-sm;
+    color: $tk-ink-soft;
+    font-weight: 500;
+    font-size: .875rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color .12s ease, color .12s ease;
+
+    i {
+        font-size: 1.0625rem;
+        width: 20px;
+        text-align: center;
+        flex-shrink: 0;
+        color: $tk-muted;
+        transition: color .12s ease;
+    }
+
+    &:hover {
+        background: $tk-surface-alt;
+        color: $tk-ink;
+
+        i { color: $tk-ink-soft; }
+    }
+
+    &.is-active {
+        background: $tk-primary;
+        color: #fff;
+        font-weight: 600;
+
+        i { color: #fff; }
+    }
+}
+
+.tk-nav-link__count {
+    margin-left: auto;
+    font-size: .6875rem;
+    font-weight: 650;
+    background: $tk-neutral-soft;
+    color: $tk-muted;
+    border-radius: 99px;
+    padding: .1rem .45rem;
+    min-width: 22px;
+    text-align: center;
+
+    .tk-nav-link.is-active & {
+        background: rgba(255, 255, 255, .22);
+        color: #fff;
+    }
+}
+
+.tk-sidebar__footer {
+    border-top: 1px solid $tk-line;
+    padding: .75rem;
+    flex-shrink: 0;
+}
+
+/* --- Mode reduit (desktop) ------------------------------------ */
+
+@include media-breakpoint-up(lg) {
+    .tk-shell.is-collapsed {
+        .tk-sidebar { width: $tk-sidebar-width-collapsed; }
+
+        .tk-sidebar__name,
+        .tk-sidebar__section,
+        .tk-nav-link span,
+        .tk-nav-link__count,
+        .tk-sidebar__footer .tk-user-chip__meta { display: none; }
+
+        .tk-sidebar__brand { justify-content: center; padding: 0; }
+
+        .tk-nav-link {
+            justify-content: center;
+            padding: .55rem;
+        }
+
+        .tk-sidebar__section {
+            display: block;
+            font-size: 0;
+            padding: .75rem 0 .25rem;
+
+            &::after {
+                content: "";
+                display: block;
+                height: 1px;
+                background: $tk-line;
+            }
+        }
+
+        .tk-main { margin-left: $tk-sidebar-width-collapsed; }
+    }
+}
+
+/* ---------------------------------------------------------------
+ | Zone principale
+ | --------------------------------------------------------------- */
+
+.tk-main {
+    margin-left: $tk-sidebar-width;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: margin-left .18s ease;
+}
+
+.tk-topbar {
+    height: $tk-topbar-height;
+    background: $tk-surface;
+    border-bottom: 1px solid $tk-line;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: 0 1.25rem;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+.tk-topbar__toggle,
+.tk-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: $border-radius-sm;
+    border: 1px solid transparent;
+    background: transparent;
+    color: $tk-ink-soft;
+    display: inline-grid;
+    place-items: center;
+    font-size: 1.05rem;
+    position: relative;
+    transition: background-color .12s ease, color .12s ease;
+
+    &:hover {
+        background: $tk-surface-alt;
+        color: $tk-ink;
+    }
+}
+
+.tk-icon-btn__dot {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 99px;
+    background: $tk-danger;
+    color: #fff;
+    font-size: .625rem;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+}
+
+.tk-topbar__search {
+    max-width: 340px;
+    flex: 1;
+
+    .form-control {
+        background: $tk-surface-alt;
+        border-color: transparent;
+
+        &:focus {
+            background: $tk-surface;
+            border-color: $tk-primary;
+        }
+    }
+}
+
+.tk-page {
+    padding: 1.5rem;
+    flex: 1;
+
+    @include media-breakpoint-down(sm) {
+        padding: 1rem;
+    }
+}
+
+.tk-page-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.35rem;
+}
+
+.tk-page-title {
+    font-size: 1.4375rem;
+    font-weight: 680;
+    letter-spacing: -.02em;
+    margin: 0;
+}
+
+.tk-page-subtitle {
+    color: $tk-muted;
+    font-size: .875rem;
+    margin: .2rem 0 0;
+}
+
+.tk-breadcrumb {
+    font-size: .8125rem;
+    margin-bottom: .35rem;
+
+    .breadcrumb {
+        margin: 0;
+        --bs-breadcrumb-divider-color: #{$tk-faint};
+        --bs-breadcrumb-item-padding-x: .45rem;
+    }
+
+    a {
+        color: $tk-muted;
+        text-decoration: none;
+
+        &:hover { color: $tk-primary; }
+    }
+
+    .breadcrumb-item.active { color: $tk-ink-soft; }
+}
+
+/* ---------------------------------------------------------------
+ | Responsive : sidebar hors ecran sous lg
+ | --------------------------------------------------------------- */
+
+@include media-breakpoint-down(lg) {
+    .tk-sidebar {
+        transform: translateX(-100%);
+        transition: transform .2s ease;
+        box-shadow: $box-shadow-lg;
+    }
+
+    .tk-shell.is-mobile-open .tk-sidebar { transform: translateX(0); }
+
+    .tk-main { margin-left: 0; }
+
+    .tk-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, .42);
+        z-index: 1035;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .2s ease;
+    }
+
+    .tk-shell.is-mobile-open .tk-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
